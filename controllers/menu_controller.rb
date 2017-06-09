@@ -1,5 +1,5 @@
  # #1
- require_relative '../models/address_book'
+ require_relative '../models/address_book' # include AddressBook using require_relative
  
  class MenuController
    attr_reader :address_book
@@ -90,7 +90,7 @@
          entry_submenu(entry)
      end
    end
- end
+ # end
 
    def create_entry
      # #11

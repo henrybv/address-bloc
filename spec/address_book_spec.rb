@@ -139,6 +139,45 @@ require_relative '../models/address_book'
 
    end
 
+   describe "importing from entries_2.csv" do
+      it "imports the correct number of entries" do
+        book.import_from_csv("entries_2.csv")
+
+        expect(book.entries.size).to eq 3
+      end
+
+     it "imports the 1st entry" do
+       book.import_from_csv("entries.csv")
+       # Check the first entry
+       entry_one = book.entries[0]
+ 
+       # #5
+       expect(entry_one.name).to eq "Bill"
+       expect(entry_one.phone_number).to eq "555-555-4854"
+       expect(entry_one.email).to eq "bill@blocmail.com"
+     end
+
+     it "imports the 2nd entry" do
+       book.import_from_csv("entries.csv")
+       # Check the second entry
+       entry_two = book.entries[1]
+       expect(entry_two.name).to eq "Bob"
+       expect(entry_two.phone_number).to eq "555-555-5415"
+       expect(entry_two.email).to eq "bob@blocmail.com"
+     end
+ 
+     it "imports the 3rd entry" do
+       book.import_from_csv("entries.csv")
+       # Check the third entry
+       entry_three = book.entries[2]
+       expect(entry_three.name).to eq "Joe"
+       expect(entry_three.phone_number).to eq "555-555-3660"
+       expect(entry_three.email).to eq "joe@blocmail.com"
+     end
+
+
+   end
+
    describe "#remove_entry" do
    	it "removes an entry by name, phone_number, and email address" do
    		book = AddressBook.new

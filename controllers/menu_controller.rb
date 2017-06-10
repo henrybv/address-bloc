@@ -15,7 +15,7 @@
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
-     puts "5 - Nuke all entries"
+     puts "5 - Demolish all entries"
      puts "6 - Exit"
      print "Enter your selection: "
 
@@ -42,7 +42,7 @@
        main_menu
      when 5
        system "clear"
-       @address_book.nuke
+       @address_book.demolish
        puts "All entries deleted!"
        main_menu
      when 6
@@ -124,22 +124,27 @@
    end
 
    def read_csv
-    print "Enter CSV file to import: "
-    file_name = gets.chomp
-
-    if file_name.empty?
-      system "clear"
-      puts "No CSV file read"
-      main_menu
-    end
-
-    begin
-      entry_count = address_book.import_from_csv(file_name).entry_count
-      system "clear"
-      puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
-      read_csv
-    end 
-  end
+     # #1
+     print "Enter CSV file to import: "
+     file_name = gets.chomp
+ 
+     # #2
+     if file_name.empty?
+       system "clear"
+       puts "No CSV file read"
+       main_menu
+     end
+ 
+     # #3
+     begin
+       entry_count = address_book.import_from_csv(file_name).count
+       system "clear"
+       puts "#{entry_count} new entries added from #{file_name}"
+     rescue
+       puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
+       read_csv
+     end
+   end
 
   def delete_entry
     address_book.entries.delete(entry)

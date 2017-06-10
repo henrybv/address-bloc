@@ -8,7 +8,7 @@
  		@entries = []
  	end
 
- 	def nuke
+ 	def demolish
  		@entries = []
  	end
 

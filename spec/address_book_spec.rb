@@ -4,13 +4,13 @@ require_relative '../models/address_book'
 
    let(:book) { AddressBook.new }
 
-   describe "#nuke" do
+   describe "#demolish" do
     it "should delete all entries" do
       book.add_entry('Bill Gates', '650.888.9900', 'bill@microsoft.com')
       book.add_entry('Bill Gates II', '650.888.9900', 'bill@microsoft.com')
       book.add_entry('Bill Gates III', '650.888.9900', 'bill@microsoft.com')
 
-      book.nuke
+      book.demolish
       expect(book.entries.size).to eq 0
     end
    end
